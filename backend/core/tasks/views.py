@@ -33,6 +33,7 @@ class TaskListCreateView(generics.ListCreateAPIView):
         return Task.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
+        print("Usuario que crea tarea:", self.request.user)
         serializer.save(user=self.request.user)
 
 class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
