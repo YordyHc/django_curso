@@ -41,9 +41,12 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'tasks',
     'drf_yasg',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -153,3 +156,8 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
 }
+CORS_ALLOW_ALL_ORIGINS = True  # Solo para desarrollo
+# O mejor, si usas un frontend con host fijo:
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",  # o el puerto de tu frontend
+# ]
