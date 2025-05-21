@@ -57,8 +57,12 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h2>Mis Tareas</h2>
-      <button onClick={logout}>Cerrar sesión</button>
+      <div className="top-bar">
+        <h2>Mis Tareas</h2>
+        <button className="logout" onClick={logout}>
+          Cerrar sesión
+        </button>
+      </div>
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>

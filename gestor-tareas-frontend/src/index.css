@@ -89,3 +89,25 @@ button.logout {
 button.logout:hover {
   background-color: #495057;
 }
+
+button.logout {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+button.logout:hover {
+  background-color: #495057;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 1.5rem auto;
+}
