@@ -18,14 +18,19 @@ export const AuthProvider = ({ children }) => {
   );
 
   const login = async (username, password) => {
-    const res = await API.post("/api/token/", {
-      username,
-      password,
-    });
-    const data = res.data;
-    setAuthTokens(data);
-    setUser(jwtDecode(data.access));
-    localStorage.setItem("tokens", JSON.stringify(data));
+    try {
+      const res = await API.post("/api/token/", {
+        username,
+        password,
+      });
+      setAuthTokens(res.data);
+      setUser(jwtDecode(res.data.access));
+      localStorage.setItem("authTokens", JSON.stringify(res.data));
+      return true; // 👈 Devuelve true si ok
+    } catch (err) {
+      console.error("Error de login:", err.response?.data || err.message);
+      return false; // 👈 Devuelve false si error
+    }
   };
 
   const logout = useCallback(() => {

@@ -1,14 +1,21 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom"; // 👈 Importar hook
 
 export default function Login() {
   const { login } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // 👈 Instanciarlo
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(username, password);
+    const success = await login(username, password); // 👈 login debe retornar true/false
+    if (success) {
+      navigate("/"); // 👈 redirigir si fue exitoso
+    } else {
+      alert("Credenciales incorrectas");
+    }
   };
 
   return (
